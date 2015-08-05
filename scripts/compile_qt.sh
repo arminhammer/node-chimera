@@ -1,13 +1,17 @@
 #!/bin/bash
 
-if [ ! -f "qt-everywhere-opensource-src-5.0.2.tar.gz" ]
+majorV=5.5
+minorV=5.5.0
+filename="qt-everywhere-opensource-src-$minorV.tar.gz"
+
+if [ ! -f $filename ]
 then
-  echo 1
-  #wget http://download.qt-project.org/official_releases/qt/5.0/5.0.2/single/qt-everywhere-opensource-src-5.0.2.tar.gz
-  #tar zxf qt-everywhere-opensource-src-5.0.2.tar.gz
+  echo "Downloading $filename..."
+  wget "http://download.qt.io/official_releases/qt/$majorV/$minorV/single/$filename"
+  tar zxf $filename
 fi
 
-cd qt-everywhere-opensource-src-5.0.2
+cd "qt-everywhere-opensource-src-$minorV"
 
 COMPILE_JOBS=4
 
@@ -34,7 +38,7 @@ QT_CFG+=' -qt-zlib'
 QT_CFG+=' -qt-pcre'
 QT_CFG+=' -nomake examples'
 QT_CFG+=' -nomake tests'
-QT_CFG+=' -skip qtwebkit-examples-and-demos'
+#QT_CFG+=' -skip qtwebkit-examples-and-demos'
 
 # Irrelevant Qt features
 QT_CFG+=' -no-cups'
@@ -80,5 +84,5 @@ export MAKEFLAGS=-j$COMPILE_JOBS
 # fi
 
 ./configure -prefix $PWD/../qt $QT_CFG
-#make -j8
-#make install
+make -j8
+make install
