@@ -27,7 +27,7 @@
             '../qt/lib/libQt5Widgets.dylib',
             '../qt/lib/libQt5Network.dylib',
             '../qt/lib/libQt5WebKit.dylib',
-            '../qt/lib/libQtWebKitWidgets.dylib'
+            '../qt/lib/libQt5WebKitWidgets.dylib'
           ],
           'xcode_settings': {
             'OTHER_LDFLAGS': [
